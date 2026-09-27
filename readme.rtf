@@ -1,0 +1,83 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww30040\viewh16300\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # README\
+\
+This readme file was generated on **2025-11-17**\
+\
+## GENERAL INFORMATION\
+\
+**Title of Analysis:** Monte Carlo Simulation of Rejection Rates under Serial Dependence (AEM 6850)  \
+**Institution:** Cornell University, Ithaca, NY, USA  \
+**Date of data generation:** 2025-11-17  \
+\
+---\
+\
+## SHARING / ACCESS INFORMATION\
+\
+- **Data source:** Synthetic data generated within the R script; no external datasets used.  \
+\
+---\
+\
+## DATA & FILE OVERVIEW\
+\
+Project folder: **Serial-Correlation-Monte-Carlo**  \
+\
+### `script_files/`\
+- `serial_correlation_sim.R` \'96 generates serially correlated data, computes OLS estimates with naive and Newey-West SEs, calculates rejection rates, and saves figures.\
+\
+### `output_figure/`\
+- `Rejection_rates_Serial_Dependence.png` \'96 side-by-side plots of rejection rates for naive vs. Newey-West SEs.\
+\
+**Relationship:** Script performs simulation and plotting, saving output to `output_figure/`.\
+\
+---\
+\
+## METHODOLOGICAL INFORMATION\
+\
+**Simulation Settings:**\
+- Sample sizes (`n_vec`): 25, 50, 100, 200, 400, 800, 1600  \
+- Autocorrelation (`rho_vec`): 0, 0.25, 0.5, 0.75  \
+- True coefficient (`beta`) = 1  \
+- Replications (`r`) = 1000  \
+- Significance level (`alpha`) = 0.05  \
+\
+**Data Generating Process:**\
+- Serially correlated predictor `x` and error `e`  \
+- Response: `y = beta * x + e`  \
+\
+**Estimation & Testing:**\
+- OLS with naive SEs and Newey-West (lag=4) SEs  \
+- Two-sided t-test for slope coefficient  \
+- Rejection rate = proportion of simulations rejecting null  \
+\
+**Software Requirements:**\
+- R \uc0\u8805  4.x  \
+- Package: `sandwich` (installed automatically if missing)  \
+\
+**Reproducibility:** `set.seed(123)`  \
+\
+---\
+\
+## DATA-SPECIFIC INFORMATION\
+\
+### `Rejection_rates_Serial_Dependence.png`\
+- **Type:** PNG  \
+- **Description:** Plots rejection rates across sample sizes and autocorrelation.  \
+  - Left: naive SEs, Right: Newey-West SEs  \
+  - Colored lines for different `rho` values  \
+  - Horizontal dashed line at 0.05 for nominal alpha  \
+\
+### `serial_correlation_sim.R`\
+- **Key outputs:**  \
+  - `results` \'96 average rejection rates for naive and Newey-West SEs  \
+  - `reject_naive_vec` / `reject_nw_vec` \'96 simulation-level rejection indicators  \
+\
+**Notes:**  \
+- No missing data  \
+- \'93Naive\'94 = standard OLS SE, \'93Newey-West\'94 = HAC SE correcting for serial correlation  \
+}
